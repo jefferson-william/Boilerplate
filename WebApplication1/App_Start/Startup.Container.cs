@@ -4,15 +4,9 @@
     using System.Web.Mvc;
     using Autofac;
     using Autofac.Integration.Mvc;
-    using WebApplication1.Services;
+    using Services;
     using Owin;
 
-    /// <summary>
-    /// Register types into the Autofac Inversion of Control (IOC) container. Autofac makes it easy to register common 
-    /// MVC types like the <see cref="UrlHelper"/> using the <see cref="AutofacWebTypesModule"/>. Feel free to change 
-    /// this to another IoC container of your choice but ensure that common MVC types like <see cref="UrlHelper"/> are 
-    /// registered. See http://autofac.readthedocs.org/en/latest/integration/aspnet.html.
-    /// </summary>
     public partial class Startup
     {
         public static void ConfigureContainer(IAppBuilder app)
@@ -64,10 +58,6 @@
             builder.RegisterControllers(assembly);
         }
 
-        /// <summary>
-        /// Sets the ASP.NET MVC dependency resolver.
-        /// </summary>
-        /// <param name="container">The container.</param>
         private static void SetMvcDependencyResolver(IContainer container)
         {
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

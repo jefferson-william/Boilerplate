@@ -3,7 +3,6 @@
     using System.Web.Mvc;
     using System.Web.Routing;
     using Boilerplate.Web.Mvc.Filters;
-    using WebApplication1.Constants;
     // $Start-NWebSec$
     using NWebsec.Mvc.HttpHeaders;
     using NWebsec.Mvc.HttpHeaders.Csp;
@@ -164,17 +163,6 @@
                     // Allow all AJAX and Web Sockets calls from the same domain.
                     Self = true
                 });
-            // font-src - This directive restricts from where the protected resource can load fonts.
-            filters.Add(
-                new CspFontSrcAttribute()
-                {
-                    // Allow fonts from maxcdn.bootstrapcdn.com.
-                    CustomSources = string.Join(
-                        " ",
-                        ContentDeliveryNetwork.MaxCdn.Domain),
-                    // Allow all fonts from the same domain.
-                    Self = true
-                });
             // form-action - This directive restricts which URLs can be used as the action of HTML form elements.
             filters.Add(
                 new CspFormActionAttribute()
@@ -218,29 +206,6 @@
                     // Allow images from the same domain.
                     Self = true,
                 });
-            // script-src - This directive restricts which scripts the protected resource can execute. 
-            //              The directive also controls other resources, such as XSLT style sheets, which can cause the 
-            //              user agent to execute script.
-            filters.Add(
-                new CspScriptSrcAttribute()
-                {
-                    // Allow scripts from the CDN's.
-                    CustomSources = string.Join(
-                        " ",
-#if DEBUG
-                        // Allow Browser Link to work in debug mode only.
-                        "localhost:*",
-#endif
-                        ContentDeliveryNetwork.Google.Domain,
-                        ContentDeliveryNetwork.Microsoft.Domain),
-                    // Allow scripts from the same domain.
-                    Self = true,
-                    // Allow the use of the eval() method to create code from strings. This is unsafe and can open your 
-                    // site up to XSS vulnerabilities.
-                    // UnsafeEval = true,
-                    // Allow in-line JavaScript, this is unsafe and can open your site up to XSS vulnerabilities.
-                    // UnsafeInline = true
-                });
             // media-src - This directive restricts from where the protected resource can load video and audio.
             filters.Add(
                 new CspMediaSrcAttribute()
@@ -258,33 +223,6 @@
                     // CustomSources = "example.com",
                     // Allow plug-ins from the same domain.
                     Self = false
-                });
-            // plugin-types - This directive restricts the set of plug-ins that can be invoked by the protected resource.
-            //                You can also use the @Html.CspMediaType("application/pdf") HTML helper instead of this
-            //                attribute. The HTML helper will add the media type to the CSP header.
-            // filters.Add(
-            //     new CspPluginTypesAttribute()
-            //     {
-            //         // Allow Adobe Flash and Microsoft Silverlight plug-ins
-            //         MediaTypes = "application/x-shockwave-flash application/xaml+xml"
-            //     });
-            // style-src - This directive restricts which styles the user applies to the protected resource.
-            filters.Add(
-                new CspStyleSrcAttribute()
-                {
-                    // Allow CSS from maxcdn.bootstrapcdn.com
-                    CustomSources = string.Join(
-                        " ",
-                        ContentDeliveryNetwork.MaxCdn.Domain),
-                    // Allow CSS from the same domain.
-                    Self = true,
-                    // Allow in-line CSS, this is unsafe and can open your site up to XSS vulnerabilities.
-                    // Note: This is currently enable because Modernizr does not support CSP and includes in-line styles
-                    // in its JavaScript files. This is a security hold. If you don't want to use Modernizr, be sure to 
-                    // disable unsafe in-line styles. For more information See:
-                    // http://stackoverflow.com/questions/26532234/modernizr-causes-content-security-policy-csp-violation-errors
-                    // https://github.com/Modernizr/Modernizr/pull/1263
-                    UnsafeInline = true
                 });
         }
         // $End-NWebSec$

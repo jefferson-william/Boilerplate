@@ -109,6 +109,17 @@
             //      e.g. CspDefaultSrcAttribute becomes CspDefaultSrcReportOnlyAttribute.
             // filters.Add(new CspReportOnlyAttribute());
 
+            filters.Add(
+                new CspStyleSrcAttribute()
+                {
+                    Self = true
+                });
+
+            filters.Add(
+                new CspScriptSrcAttribute()
+                {
+                    Self = true
+                });
 
             // Enables logging of CSP violations. See the NWebsecHttpHeaderSecurityModule_CspViolationReported method 
             // in Global.asax.cs to see where they are logged.

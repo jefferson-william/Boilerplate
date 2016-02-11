@@ -268,6 +268,8 @@
     <Content Include="Error\ServiceUnavailable.html" />
     <Content Include="Global.asax" />
     <Content Include="humans.txt" />
+    <Content Include="Scripts\Bootstrap.js" />
+    <Content Include="Scripts\Main.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Error\BadRequest.cshtml" />
     <Content Include="Views\Error\InternalServerError.cshtml" />

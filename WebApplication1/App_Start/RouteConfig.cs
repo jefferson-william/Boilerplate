@@ -33,7 +33,7 @@
 
             routes.MapRoute(
                 name: "HomeIndex",
-                url: "/",
+                url: "",
                 defaults: new { controller = "Home", action = "Index" });
         }
     }

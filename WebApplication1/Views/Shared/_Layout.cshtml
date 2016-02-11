@@ -26,13 +26,12 @@
     {
         <meta name="author" content="@ViewBag.Author">
     }
-    <link href="@Url.RouteUrl(HomeControllerRoute.GetFeed)" rel="alternate" title="@Application.Name Feed" type="application/atom+xml">
-    <link href="@Url.RouteUrl(HomeControllerRoute.GetOpenSearchXml).TrimEnd('/')" rel="search" title="ASP.NET MVC Boilerplate Search" type="application/opensearchdescription+xml">
     @RenderSection("head", required: false)
 </head>
 <body>
     
     @RenderBody()
+
     @RenderSection("scripts", required: false)
 </body>
 </html>

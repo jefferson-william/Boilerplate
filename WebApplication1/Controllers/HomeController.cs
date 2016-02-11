@@ -3,8 +3,6 @@
     using System.Diagnostics;
     using System.Net;
     using System.Text;
-    using System.Threading;
-    using System.Threading.Tasks;
     using System.Web.Mvc;
     using Boilerplate.Web.Mvc;
     using Boilerplate.Web.Mvc.Filters;
@@ -16,9 +14,7 @@
         #region Fields
 
         private readonly IBrowserConfigService browserConfigService;
-        private readonly IFeedService feedService;
         private readonly IManifestService manifestService;
-        private readonly IOpenSearchService openSearchService;
         private readonly IRobotsService robotsService;
         private readonly ISitemapService sitemapService; 
 
@@ -28,16 +24,12 @@
 
         public HomeController(
             IBrowserConfigService browserConfigService,
-            IFeedService feedService,
             IManifestService manifestService,
-            IOpenSearchService openSearchService,
             IRobotsService robotsService,
             ISitemapService sitemapService)
         {
             this.browserConfigService = browserConfigService;
-            this.feedService = feedService;
             this.manifestService = manifestService;
-            this.openSearchService = openSearchService;
             this.robotsService = robotsService;
             this.sitemapService = sitemapService;
         }
@@ -48,14 +40,6 @@
         public ActionResult Index()
         {
             return this.View(HomeControllerAction.Index);
-        }
-
-        [OutputCache(CacheProfile = CacheProfileName.Feed)]
-        [Route("feed", Name = HomeControllerRoute.GetFeed)]
-        public async Task<ActionResult> Feed()
-        {
-            CancellationToken cancellationToken = this.Response.ClientDisconnectedToken;
-            return new AtomActionResult(await this.feedService.GetFeed(cancellationToken));
         }
 
         [NoTrailingSlash]
@@ -80,18 +64,6 @@
                 this.Request.Headers.Get("User-Agent")));
             string content = this.manifestService.GetManifestJson();
             return this.Content(content, ContentType.Json, Encoding.UTF8);
-        }
-
-        [NoTrailingSlash]
-        [OutputCache(CacheProfile = CacheProfileName.OpenSearchXml)]
-        [Route("opensearch.xml", Name = HomeControllerRoute.GetOpenSearchXml)]
-        public ContentResult OpenSearchXml()
-        {
-            Trace.WriteLine(string.Format(
-                "opensearch.xml requested. User Agent:<{0}>.", 
-                this.Request.Headers.Get("User-Agent")));
-            string content = this.openSearchService.GetOpenSearchXml();
-            return this.Content(content, ContentType.Xml, Encoding.UTF8);
         }
 
         [NoTrailingSlash]

@@ -210,8 +210,6 @@
     <Compile Include="Services\Logging\LoggingService.cs" />
     <Compile Include="Services\Manifest\IManifestService.cs" />
     <Compile Include="Services\Manifest\ManifestService.cs" />
-    <Compile Include="Services\OpenSearch\IOpenSearchService.cs" />
-    <Compile Include="Services\OpenSearch\OpenSearchService.cs" />
     <Compile Include="Services\Robots\IRobotsService.cs" />
     <Compile Include="Services\Robots\RobotsService.cs" />
     <Compile Include="Services\SitemapPinger\ISitemapPingerService.cs" />
@@ -220,8 +218,6 @@
     <Compile Include="Services\Sitemap\SitemapService.cs">
       <ExcludeFromStyleCop>False</ExcludeFromStyleCop>
     </Compile>
-    <Compile Include="Services\Feed\IFeedService.cs" />
-    <Compile Include="Services\Feed\FeedService.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -294,7 +290,7 @@
     <Content Include="Views\Web.config">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
@@ -328,7 +324,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>4920</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:4920/</IISUrl>
+          <IISUrl>http://localhost:5000/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

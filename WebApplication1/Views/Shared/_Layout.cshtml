@@ -17,7 +17,6 @@
     <link rel="icon" type="image/png" href="/content/icons/favicon-192x192.png" sizes="192x192">
     <link rel="icon" type="image/png" href="/content/icons/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/png" href="/content/icons/favicon-16x16.png" sizes="16x16">
-
     <link rel="manifest" href="@Url.RouteUrl(HomeControllerRoute.GetManifestJson)">
     <meta name="theme-color" content="#1E1E1E">
     <meta name="x-font-awesome-stylesheet-fallback-test" class="fa">
@@ -26,8 +25,9 @@
     {
         <meta name="author" content="@ViewBag.Author">
     }
+    <link rel="stylesheet" type="text/css" href="/Styles/Bootstrap.css" />
 </head>
-<body>
+<body ng-cloak>
     
     @RenderBody()
 

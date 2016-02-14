@@ -1,0 +1,6 @@
+﻿body {
+    background: #eee;
+}
+[ng-cloak] {
+    display: none;
+}
